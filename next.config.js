@@ -16,8 +16,7 @@ const nextConfig = {
   // Compression
   compress: true,
   
-  // Performance optimizations
-  swcMinify: true,
+  // Performance optimizations (swcMinify is enabled by default in Next.js 15)
   
   // Security headers
   async headers() {
