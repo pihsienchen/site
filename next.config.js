@@ -3,7 +3,7 @@ const nextConfig = {
   // Enable experimental features
   experimental: {
     // Optimize bundle
-    optimizePackageImports: ['lucide-react', 'date-fns'],
+    optimizePackageImports: ['lucide-react', 'date-fns', 'framer-motion'],
   },
   
   // Image optimization
