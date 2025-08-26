@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import type { ContentMetadata } from '@/lib/types';
 
@@ -12,11 +11,8 @@ interface SectionCardProps {
 
 export default function SectionCard({ metadata, slug, locale }: SectionCardProps) {
   return (
-    <motion.div
+    <div
       className="group pb-8 mb-8 last:mb-0"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
     >
       {/* Title */}
       <Link href={`/${locale}/${slug}`}>
@@ -40,6 +36,6 @@ export default function SectionCard({ metadata, slug, locale }: SectionCardProps
       >
         Enter Section →
       </Link>
-    </motion.div>
+    </div>
   );
 }
