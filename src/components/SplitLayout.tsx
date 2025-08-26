@@ -12,23 +12,28 @@ interface SplitLayoutProps {
 
 export default function SplitLayout({ children, locale }: SplitLayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col lg:flex-row">
+    <div className="h-screen flex flex-col lg:flex-row overflow-hidden">
       {/* Left Panel - Portrait */}
       <motion.div
-        className="lg:w-1/2 lg:min-h-screen bg-gray-100 relative overflow-hidden"
+        className="lg:flex-shrink-0 lg:h-screen bg-white relative overflow-hidden"
+        style={{ aspectRatio: 'auto' }}
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         {/* Portrait Image */}
-        <div className="relative w-full h-64 lg:h-full">
-          <Image
-            src="/images/portrait.svg"
-            alt="Pi-hsien Chen"
-            fill
-            className="object-cover object-center"
-            priority
-          />
+        <div className="relative w-full h-64 lg:h-full lg:py-4 p-4">
+          <div className="relative w-full h-full border-4 border-white rounded-lg overflow-hidden">
+            <Image
+              src="/images/pi-hsien.jpg"
+              alt="Pi-hsien Chen"
+              width={400}
+              height={600}
+              className="w-full h-full object-cover object-center"
+              priority
+              style={{ aspectRatio: '2/3' }}
+            />
+          </div>
         </div>
 
         {/* Overlay with name */}
@@ -51,32 +56,33 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
           </motion.p>
         </div>
 
-        {/* Language Switcher - positioned on portrait */}
-        <div className="absolute top-4 right-4 lg:top-6 lg:right-6">
-          <LanguageSwitcher currentLocale={locale} />
-        </div>
       </motion.div>
 
       {/* Right Panel - Content */}
       <motion.div
-        className="lg:w-1/2 lg:min-h-screen bg-white"
+        className="flex-1 lg:h-screen bg-white relative"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
       >
+        {/* Language Switcher - positioned on top right of entire screen */}
+        <div className="absolute top-4 right-4 lg:top-6 lg:right-6 z-10">
+          <LanguageSwitcher currentLocale={locale} />
+        </div>
+        
         <div className="h-full flex flex-col">
           {/* Content Area */}
-          <div className="flex-1 p-6 lg:p-12 overflow-y-auto">
-            <div className="max-w-2xl mx-auto">
+          <div className="flex-1 p-6 lg:p-12 overflow-hidden">
+            <div className="max-w-2xl mx-auto h-full overflow-hidden">
               {children}
             </div>
           </div>
 
           {/* Footer */}
-          <footer className="border-t border-gray-200 p-6 lg:p-8">
+          <footer className="p-6 lg:p-8">
             <div className="max-w-2xl mx-auto">
               <p className="font-sans text-sm text-gray-500 text-center">
-                © 2024 Pi-hsien Chen. All rights reserved.
+                © 2025 Pi-hsien Chen. All rights reserved.
               </p>
             </div>
           </footer>
