@@ -32,18 +32,18 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
           </div>
         </div>
 
-        {/* Overlay with name */}
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 lg:p-8">
-          <h1
-            className="font-serif text-3xl lg:text-5xl text-white font-light"
-          >
-            Pi-hsien Chen
-          </h1>
-          <p
-            className="font-sans text-lg lg:text-xl text-gray-200 mt-2"
-          >
-            Virtuoso Musician & Educator
-          </p>
+        {/* Autogram overlay */}
+        <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-12">
+          <div className="flex justify-center">
+            <Image
+              src={locale === 'zh' ? "/images/pi-hsien-autogram-zh-placeholder.png" : "/images/pi-hsien-autogram-en-placeholder.png"}
+              alt="Pi-hsien Chen autogram"
+              width={300}
+              height={150}
+              className="max-w-full h-auto"
+              priority
+            />
+          </div>
         </div>
 
       </div>
