@@ -4,15 +4,15 @@ A multilingual interactive website for musician Pi-hsien Chen built with Next.js
 
 ## Features
 
-- ** Interactive Canvas**: Full-screen canvas with dynamic section transitions
-- ** Multilingual Support**: Available in English, French, and Chinese
-- ** Advanced Animations**: Framer Motion powered section transitions and micro-interactions
-- ** Responsive Design**: Optimized for desktop, tablet, and mobile
-- ** Fast Performance**: Static site generation with Next.js
-- ** SEO Optimized**: Comprehensive metadata and semantic HTML
-- ** Enhanced Content**: Markdown with extended frontmatter for interactive features
-- ** State Management**: Zustand for canvas transition orchestration
-- ** Rich Media**: Swiper.js powered slideshows and interactive timelines
+- **Interactive Canvas**: Full-screen canvas with dynamic section transitions
+- **Multilingual Support**: Available in English, French, and Chinese
+- **Advanced Animations**: Framer Motion powered section transitions and micro-interactions
+- **Responsive Design**: Optimized for desktop, tablet, and mobile
+- **Fast Performance**: Static site generation with Next.js
+- **SEO Optimized**: Comprehensive metadata and semantic HTML
+- **Enhanced Content**: Markdown with extended frontmatter for interactive features
+- **State Management**: Zustand for canvas transition orchestration
+- **Rich Media**: Swiper.js powered slideshows and interactive timelines
 
 ## Tech Stack
 
@@ -219,4 +219,4 @@ The built files will be in the `.next` directory, ready for deployment.
 
 ## License
 
-© 2024 Pi-hsien Chen. All rights reserved.
+© 2025 Pi-hsien Chen. All rights reserved.
