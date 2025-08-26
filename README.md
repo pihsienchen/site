@@ -1,50 +1,77 @@
-# Pi-hsien Chen Website
+# Pi-hsien Chen Interactive Archive
 
-A multilingual website showcasing the artistic journey of virtuoso musician and educator Pi-hsien Chen. Built with Next.js 15, featuring a timeless split-layout design with smooth animations and comprehensive internationalization support.
+A multilingual interactive website for musician Pi-hsien Chen built with Next.js 15 App Router. The site acts as a visual archive and library, featuring canvas-like interactions where sections transform dynamically when clicked.
 
 ## Features
 
-- **🎨 Elegant Split Layout**: Magazine-style landing page with portrait and section previews
-- **🌍 Multilingual Support**: Available in English, French, and Chinese
-- **✨ Smooth Animations**: Framer Motion powered page transitions
-- **📱 Responsive Design**: Optimized for desktop, tablet, and mobile
-- **⚡ Fast Performance**: Static site generation with Next.js
-- **🔍 SEO Optimized**: Comprehensive metadata and semantic HTML
-- **📝 Markdown Content**: Easy content management with Markdown files
+- ** Interactive Canvas**: Full-screen canvas with dynamic section transitions
+- ** Multilingual Support**: Available in English, French, and Chinese
+- ** Advanced Animations**: Framer Motion powered section transitions and micro-interactions
+- ** Responsive Design**: Optimized for desktop, tablet, and mobile
+- ** Fast Performance**: Static site generation with Next.js
+- ** SEO Optimized**: Comprehensive metadata and semantic HTML
+- ** Enhanced Content**: Markdown with extended frontmatter for interactive features
+- ** State Management**: Zustand for canvas transition orchestration
+- ** Rich Media**: Swiper.js powered slideshows and interactive timelines
 
 ## Tech Stack
 
 - **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS with custom typography
 - **Animations**: Framer Motion
+- **State Management**: Zustand
 - **Content**: Markdown with gray-matter frontmatter
+- **Media**: Swiper.js for slideshows
 - **Fonts**: Inter (sans-serif) + Playfair Display (serif)
 - **Icons**: Lucide React
 - **Deployment**: Static export ready
+
+## Interactive Canvas Architecture
+
+### Vision & Interaction Design
+- **Canvas-like behavior**: Landing page acts as a single interactive canvas
+- **Section transitions**: Clicking a section fades other content while moving the selected section to specific positions
+- **Smooth animations**: Each section has unique transition patterns (horizontal movement, fade effects)
+- **Deep-dive capability**: From interactive views, users can access traditional markdown-style detailed pages
+
+### Section-Specific Behaviors
+- **Biography**: Title moves to top-left horizontally, reveals interactive timeline
+- **Recordings**: Title moves to center horizontally, reveals clickable tile grid
+- **Masterclasses**: Title moves left horizontally, reveals composer tile grid on right
+- **Philanthropy**: Stays in position, reveals slideshow in freed top area
 
 ## Project Structure
 
 ```
 ├── src/
 │   ├── app/
-│   │   ├── [locale]/               # Internationalized routes
-│   │   │   ├── page.tsx           # Landing page
+│   │   ├── [locale]/              # Internationalized routes
+│   │   │   ├── page.tsx           # Interactive canvas landing page
 │   │   │   ├── biography/         # Section pages
 │   │   │   ├── recordings/
 │   │   │   ├── masterclasses/
 │   │   │   └── philanthropy/
 │   │   └── layout.tsx             # Root layout
 │   ├── components/
+│   │   ├── CanvasLayout.tsx       # Full-screen interactive canvas container
+│   │   ├── TransitionManager.tsx  # Animation orchestration for section transitions
+│   │   ├── InteractiveTimeline.tsx # Biography section timeline with date-event mapping
+│   │   ├── TileGrid.tsx           # Square tile system for recordings and masterclasses
+│   │   ├── RecordingTile.tsx      # Specialized tile for recording entries
+│   │   ├── ComposerTile.tsx       # Specialized tile for composer entries
+│   │   ├── SlideshowComponent.tsx # Philanthropy slideshow using Swiper
 │   │   ├── AnimatedPage.tsx       # Page transition wrapper
 │   │   ├── LanguageSwitcher.tsx   # Locale switching
-│   │   ├── SectionCard.tsx        # Landing page section previews
+│   │   ├── SectionCard.tsx        # Landing page section previews (legacy)
 │   │   ├── SectionPage.tsx        # Generic section page template
-│   │   └── SplitLayout.tsx        # Main layout component
+│   │   └── SplitLayout.tsx        # Legacy layout for traditional page views
+│   ├── stores/
+│   │   └── canvasStore.ts         # Zustand state store for canvas transitions
 │   └── lib/
-│       ├── markdown.ts            # Content loading utilities
-│       └── types.ts               # TypeScript definitions
+│       ├── markdown.ts            # Content loading utilities with enhanced frontmatter
+│       └── types.ts               # TypeScript definitions including interactive content types
 ├── content/
-│   ├── en/                        # English content
+│   ├── en/                        # English content with enhanced frontmatter
 │   ├── fr/                        # French content
 │   └── zh/                        # Chinese content
 └── public/
@@ -79,25 +106,64 @@ npm run build
 npm run start
 ```
 
-## Content Management
+## Enhanced Content Structure
 
-### Adding New Content
+### Basic Section Content
+Each section requires markdown files in all supported locales with this frontmatter:
+```yaml
+title: "Section Title"
+subtitle: "Section Subtitle" 
+image: "/images/section-hero.svg"
+excerpt: "Preview text for landing page"
+```
+
+### Extended Content Types for Interactive Features
+
+#### Biography Timeline Data
+```yaml
+timeline:
+  - date: "1990"
+    title: "Early Studies"
+    description: "Began piano studies in Taiwan"
+  - date: "1999" 
+    title: "European Journey"
+    description: "Moved to Germany for advanced studies"
+```
+
+#### Recording Tiles Data  
+```yaml
+recordings:
+  - id: "recording-1"
+    title: "Chopin Nocturnes"
+    image: "/images/recordings/chopin.png"
+    year: "2020"
+    description: "Complete Chopin Nocturnes recording"
+```
+
+#### Masterclass Composer Data
+```yaml
+composers:
+  - id: "chopin"
+    name: "Frédéric Chopin" 
+    image: "/images/composers/chopin.png"
+    specialty: "Romantic Piano Works"
+    description: "Master of poetic piano expression"
+```
+
+#### Philanthropy Slideshow Data
+```yaml
+slideshow:
+  - image: "/images/philanthropy/slide1.jpg"
+    caption: "Music education program in rural Taiwan"
+  - image: "/images/philanthropy/slide2.jpg" 
+    caption: "Scholarship fund establishment ceremony"
+```
+
+### Content Management
 
 1. Create or edit Markdown files in the appropriate language directory under `content/`
-2. Include frontmatter metadata:
-
-```markdown
----
-title: "Section Title"
-subtitle: "Section Subtitle"
-image: "/images/section-hero.svg"
-excerpt: "Brief description for the landing page preview"
----
-
-# Your content here
-
-Your markdown content goes here and will be rendered with full typography support.
-```
+2. Include both basic frontmatter and section-specific enhanced data
+3. Content will automatically appear in the interactive canvas when added to frontmatter
 
 ### Adding New Languages
 
