@@ -10,6 +10,17 @@ interface SectionCardProps {
 }
 
 export default function SectionCard({ metadata, slug, locale }: SectionCardProps) {
+  const getEnterSectionText = (locale: string) => {
+    switch (locale) {
+      case 'en': return 'Enter Section →';
+      case 'de': return 'Bereich betreten →';
+      case 'fr': return 'Entrer dans la section →';
+      case 'zh-TW': return '進入章節 →';
+      case 'zh': return '进入章节 →';
+      default: return 'Enter Section →';
+    }
+  };
+
   return (
     <div
       className="group pb-12 mb-12 last:mb-0 max-w-2xl"
@@ -31,7 +42,7 @@ export default function SectionCard({ metadata, slug, locale }: SectionCardProps
         href={`/${locale}/${slug}`}
         className="font-sans text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200"
       >
-        Enter Section →
+{getEnterSectionText(locale)}
       </Link>
     </div>
   );

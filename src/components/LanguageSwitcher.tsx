@@ -11,14 +11,18 @@ interface LanguageSwitcherProps {
 
 const localeLabels: Record<SupportedLocale, string> = {
   en: 'English',
+  de: 'Deutsch',
   fr: 'Français',
-  zh: '中文',
+  'zh-TW': '繁體中文',
+  zh: '简体中文',
 };
 
 const localeShort: Record<SupportedLocale, string> = {
   en: 'EN',
+  de: 'DE',
   fr: 'FR',
-  zh: '中文',
+  'zh-TW': '繁中',
+  zh: '简中',
 };
 
 export default function LanguageSwitcher({ currentLocale }: LanguageSwitcherProps) {

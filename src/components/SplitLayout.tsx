@@ -36,7 +36,7 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
         <div className="absolute bottom-0 left-0 right-0 pb-8 lg:pb-12">
           <div className="flex justify-center">
             <Image
-              src={locale === 'zh' ? "/images/pi-hsien-autogram-zh-placeholder.png" : "/images/pi-hsien-autogram-en-placeholder.png"}
+              src={locale === 'zh' || locale === 'zh-TW' ? "/images/pi-hsien-autogram-zh-placeholder.png" : "/images/pi-hsien-autogram-en-placeholder.png"}
               alt="Pi-hsien Chen autogram"
               width={300}
               height={150}
