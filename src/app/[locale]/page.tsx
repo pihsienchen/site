@@ -1,7 +1,6 @@
 import { getAllSectionData, isValidLocale } from '@/lib/markdown';
 import SplitLayout from '@/components/SplitLayout';
 import SectionCard from '@/components/SectionCard';
-import AnimatedPage from '@/components/AnimatedPage';
 import { notFound } from 'next/navigation';
 
 interface HomePageProps {
@@ -18,19 +17,17 @@ export default async function HomePage({ params }: HomePageProps) {
   const sections = await getAllSectionData(locale);
 
   return (
-    <AnimatedPage>
-      <SplitLayout locale={locale}>
-        <div className="py-8">
-          {sections.map((section) => (
-            <SectionCard
-              key={section.slug}
-              metadata={section.metadata}
-              slug={section.slug}
-              locale={locale}
-            />
-          ))}
-        </div>
-      </SplitLayout>
-    </AnimatedPage>
+    <SplitLayout locale={locale}>
+      <div className="py-8">
+        {sections.map((section) => (
+          <SectionCard
+            key={section.slug}
+            metadata={section.metadata}
+            slug={section.slug}
+            locale={locale}
+          />
+        ))}
+      </div>
+    </SplitLayout>
   );
 }

@@ -5,40 +5,34 @@ import { ReactNode } from 'react';
 
 interface AnimatedPageProps {
   children: ReactNode;
-  direction?: 'left' | 'right';
   className?: string;
 }
 
 const pageVariants = {
-  initial: (direction: string) => ({
-    x: direction === 'left' ? '-100vw' : '100vw',
+  initial: {
     opacity: 0,
-  }),
+  },
   in: {
-    x: 0,
     opacity: 1,
   },
-  out: (direction: string) => ({
-    x: direction === 'left' ? '100vw' : '-100vw',
+  out: {
     opacity: 0,
-  }),
+  },
 };
 
 const pageTransition = {
   type: 'tween' as const,
-  ease: 'anticipate' as const,
-  duration: 0.8,
+  ease: 'easeOut' as const,
+  duration: 0.1,
 };
 
 export default function AnimatedPage({ 
   children, 
-  direction = 'right', 
   className = '' 
 }: AnimatedPageProps) {
   return (
     <motion.div
       className={`min-h-screen ${className}`}
-      custom={direction}
       initial="initial"
       animate="in"
       exit="out"

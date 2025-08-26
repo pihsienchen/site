@@ -25,7 +25,7 @@ export default async function SectionPage({ locale, slug }: SectionPageProps) {
   const { metadata, content } = contentData;
 
   return (
-    <AnimatedPage direction="right">
+    <AnimatedPage>
       <div className="min-h-screen bg-white">
         {/* Header */}
         <header className="relative">

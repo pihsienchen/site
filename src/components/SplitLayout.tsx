@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -14,12 +13,9 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
   return (
     <div className="h-screen flex flex-col lg:flex-row overflow-hidden">
       {/* Left Panel - Portrait */}
-      <motion.div
+      <div
         className="lg:flex-shrink-0 lg:h-screen bg-white relative overflow-hidden"
         style={{ aspectRatio: 'auto' }}
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         {/* Portrait Image */}
         <div className="relative w-full h-64 lg:h-full lg:py-4 p-4">
@@ -38,32 +34,23 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
 
         {/* Overlay with name */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-6 lg:p-8">
-          <motion.h1
+          <h1
             className="font-serif text-3xl lg:text-5xl text-white font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
           >
             Pi-hsien Chen
-          </motion.h1>
-          <motion.p
+          </h1>
+          <p
             className="font-sans text-lg lg:text-xl text-gray-200 mt-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
           >
             Virtuoso Musician & Educator
-          </motion.p>
+          </p>
         </div>
 
-      </motion.div>
+      </div>
 
       {/* Right Panel - Content */}
-      <motion.div
+      <div
         className="flex-1 lg:h-screen bg-white relative"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
       >
         {/* Language Switcher - positioned on top right of entire screen */}
         <div className="absolute top-4 right-4 lg:top-6 lg:right-6 z-10">
@@ -87,7 +74,7 @@ export default function SplitLayout({ children, locale }: SplitLayoutProps) {
             </div>
           </footer>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
