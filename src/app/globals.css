@@ -27,7 +27,7 @@ body {
 
 /* Custom typography styles */
 .font-serif {
-  font-family: var(--font-playfair);
+  font-family: var(--font-source-sans);
 }
 
 .font-sans {

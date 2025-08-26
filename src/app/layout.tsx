@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -7,9 +7,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const playfair = Playfair_Display({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-source-sans",
+  weight: ["200", "300", "400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html>
-      <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${sourceSans.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>

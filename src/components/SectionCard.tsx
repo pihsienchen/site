@@ -12,21 +12,18 @@ interface SectionCardProps {
 export default function SectionCard({ metadata, slug, locale }: SectionCardProps) {
   return (
     <div
-      className="group pb-8 mb-8 last:mb-0"
+      className="group pb-12 mb-12 last:mb-0 max-w-2xl"
     >
       {/* Title */}
       <Link href={`/${locale}/${slug}`}>
-        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-2 group-hover:text-gray-700 transition-colors duration-300 cursor-pointer hover:underline">
+        <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-extralight text-gray-900 mb-3 group-hover:text-gray-700 transition-colors duration-300 cursor-pointer hover:underline">
           {metadata.title}
         </h2>
       </Link>
 
       {/* Merged description */}
-      <p className="font-sans text-gray-700 mb-4 leading-relaxed">
-        {metadata.excerpt} This section contains comprehensive information about {metadata.title.toLowerCase()}, 
-        showcasing the depth and breadth of Pi-hsien Chen&apos;s artistic journey. 
-        Explore detailed insights, stories, and perspectives that define this important aspect 
-        of the musical career.
+      <p className="font-sans text-gray-700 mb-6 leading-relaxed">
+        {metadata.excerpt}
       </p>
 
       {/* Enter Section button */}
