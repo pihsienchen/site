@@ -1,6 +1,6 @@
 import { getAllSectionData, isValidLocale } from '@/lib/markdown';
-import SplitLayout from '@/components/SplitLayout';
-import SectionCard from '@/components/SectionCard';
+import CanvasLayout from '@/components/CanvasLayout';
+import MovableTextBox from '@/components/MovableTextBox';
 import { notFound } from 'next/navigation';
 
 interface HomePageProps {
@@ -17,17 +17,19 @@ export default async function HomePage({ params }: HomePageProps) {
   const sections = await getAllSectionData(locale);
 
   return (
-    <SplitLayout locale={locale}>
-      <div className="py-8">
-        {sections.map((section) => (
-          <SectionCard
+    <CanvasLayout locale={locale}>
+      {/* Single Column Text Boxes Grid */}
+      <div className="h-full w-full grid grid-cols-1 gap-4 lg:gap-6 content-center pb-16 lg:pb-20">
+        {sections.map((section, index) => (
+          <MovableTextBox
             key={section.slug}
             metadata={section.metadata}
             slug={section.slug}
             locale={locale}
+            index={index}
           />
         ))}
       </div>
-    </SplitLayout>
+    </CanvasLayout>
   );
 }

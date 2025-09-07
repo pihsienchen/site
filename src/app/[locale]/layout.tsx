@@ -1,6 +1,7 @@
 import { isValidLocale, supportedLocales } from '@/lib/markdown';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
+import TransitionManager from '@/components/TransitionManager';
 
 interface LocaleLayoutProps {
   children: ReactNode;
@@ -26,7 +27,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body>
-        {children}
+        <TransitionManager>
+          {children}
+        </TransitionManager>
       </body>
     </html>
   );

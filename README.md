@@ -6,7 +6,7 @@ A multilingual interactive website for musician Pi-hsien Chen built with Next.js
 
 - **Interactive Canvas**: Full-screen canvas with dynamic section transitions
 - **Multilingual Support**: Available in English, French, and Chinese
-- **Advanced Animations**: Framer Motion powered section transitions and micro-interactions
+- **Advanced Animations**: GSAP powered section transitions with Flip animations and micro-interactions
 - **Responsive Design**: Optimized for desktop, tablet, and mobile
 - **Fast Performance**: Static site generation with Next.js
 - **SEO Optimized**: Comprehensive metadata and semantic HTML
@@ -18,7 +18,7 @@ A multilingual interactive website for musician Pi-hsien Chen built with Next.js
 
 - **Framework**: Next.js 15 with App Router
 - **Styling**: Tailwind CSS with custom typography
-- **Animations**: Framer Motion
+- **Animations**: GSAP (GreenSock) with Flip plugin and ScrollTrigger
 - **State Management**: Zustand
 - **Content**: Markdown with gray-matter frontmatter
 - **Media**: Swiper.js for slideshows
@@ -29,16 +29,17 @@ A multilingual interactive website for musician Pi-hsien Chen built with Next.js
 ## Interactive Canvas Architecture
 
 ### Vision & Interaction Design
-- **Canvas-like behavior**: Landing page acts as a single interactive canvas
-- **Section transitions**: Clicking a section fades other content while moving the selected section to specific positions
-- **Smooth animations**: Each section has unique transition patterns (horizontal movement, fade effects)
-- **Deep-dive capability**: From interactive views, users can access traditional markdown-style detailed pages
+- **Canvas-like behavior**: Landing page acts as a single interactive canvas with GSAP-powered positioning
+- **Section transitions**: GSAP Flip animations capture DOM state before navigation, then animate elements to new positions
+- **Smooth animations**: Each section uses GSAP timelines with unique transition patterns (horizontal movement, fade effects, scale transforms)
+- **Performance-optimized**: Hardware-accelerated transforms using GSAP's optimized engine
+- **Deep-dive capability**: From interactive views, users can access traditional markdown-style detailed pages with seamless transitions
 
-### Section-Specific Behaviors
-- **Biography**: Title moves to top-left horizontally, reveals interactive timeline
-- **Recordings**: Title moves to center horizontally, reveals clickable tile grid
-- **Masterclasses**: Title moves left horizontally, reveals composer tile grid on right
-- **Philanthropy**: Stays in position, reveals slideshow in freed top area
+### Section-Specific Behaviors (GSAP Implementation)
+- **Biography**: GSAP animates title to top-left with `gsap.to()`, reveals timeline with ScrollTrigger staggered animations
+- **Recordings**: GSAP moves title to center using `xPercent/yPercent`, reveals tile grid with Flip state transitions
+- **Masterclasses**: GSAP horizontal movement with `gsap.timeline()`, composer tiles animate in using stagger effects
+- **Philanthropy**: Uses GSAP matchMedia for responsive positioning, slideshow transitions with custom easing
 
 ## Project Structure
 
@@ -53,20 +54,20 @@ A multilingual interactive website for musician Pi-hsien Chen built with Next.js
 │   │   │   └── philanthropy/
 │   │   └── layout.tsx             # Root layout
 │   ├── components/
-│   │   ├── CanvasLayout.tsx       # Full-screen interactive canvas container
-│   │   ├── TransitionManager.tsx  # Animation orchestration for section transitions
+│   │   ├── CanvasLayout.tsx       # GSAP-powered full-screen interactive canvas with matchMedia
+│   │   ├── TransitionManager.tsx  # GSAP Flip animation orchestration and timeline management
 │   │   ├── InteractiveTimeline.tsx # Biography section timeline with date-event mapping
 │   │   ├── TileGrid.tsx           # Square tile system for recordings and masterclasses
 │   │   ├── RecordingTile.tsx      # Specialized tile for recording entries
 │   │   ├── ComposerTile.tsx       # Specialized tile for composer entries
 │   │   ├── SlideshowComponent.tsx # Philanthropy slideshow using Swiper
-│   │   ├── AnimatedPage.tsx       # Page transition wrapper
+│   │   ├── AnimatedPage.tsx       # GSAP page transition wrapper with Flip animations
 │   │   ├── LanguageSwitcher.tsx   # Locale switching
 │   │   ├── SectionCard.tsx        # Landing page section previews (legacy)
 │   │   ├── SectionPage.tsx        # Generic section page template
 │   │   └── SplitLayout.tsx        # Legacy layout for traditional page views
 │   ├── stores/
-│   │   └── canvasStore.ts         # Zustand state store for canvas transitions
+│   │   └── canvasStore.ts         # Zustand state store for GSAP timeline orchestration and Flip state management
 │   └── lib/
 │       ├── markdown.ts            # Content loading utilities with enhanced frontmatter
 │       └── types.ts               # TypeScript definitions including interactive content types
@@ -194,12 +195,21 @@ Font customization can be done in `src/app/layout.tsx` and `src/app/globals.css`
 
 Update the color scheme in `tailwind.config.ts` and `src/app/globals.css`. The current palette uses elegant grays with custom CSS variables.
 
-### Animations
+### GSAP Animations
 
 Modify animations in:
-- `src/components/AnimatedPage.tsx` - Page transitions
-- `src/components/SectionCard.tsx` - Card interactions
-- `src/app/globals.css` - Custom animations
+- `src/components/AnimatedPage.tsx` - GSAP page transitions with Flip plugin
+- `src/components/SectionCard.tsx` - GSAP hover effects and timeline animations
+- `src/components/CanvasLayout.tsx` - GSAP matchMedia for responsive canvas positioning
+- `src/components/TransitionManager.tsx` - GSAP Flip state capture and animation orchestration
+- `src/app/globals.css` - CSS transforms optimized for GSAP animations
+
+#### Key GSAP Features Used
+- **Flip Plugin**: Seamless element transitions between DOM states
+- **ScrollTrigger**: Timeline reveals and parallax effects
+- **MatchMedia**: Responsive animation breakpoints
+- **Timeline**: Complex multi-step animation sequences
+- **Performance**: Hardware-accelerated transforms with `will-change` optimization
 
 ## Deployment
 

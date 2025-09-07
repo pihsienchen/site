@@ -3,8 +3,11 @@ const nextConfig = {
   // Enable experimental features
   experimental: {
     // Optimize bundle
-    optimizePackageImports: ['lucide-react', 'date-fns', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'date-fns', 'gsap'],
   },
+  
+  // Transpile GSAP for proper Next.js compatibility
+  transpilePackages: ['gsap'],
   
   // Image optimization
   images: {
